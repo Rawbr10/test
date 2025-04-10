@@ -1,0 +1,76 @@
+-- Wait for player and GUI
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local StarterGui = game:GetService("StarterGui")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Notification Ingame
+pcall(function()
+    StarterGui:SetCore("SendNotification", {
+        Title = "This Script Was Made By Valerikbobby",
+        Text = "Join Our Discord Server 
+https://discord.gg/d37YjMMwCq",
+        Duration = 10
+    })
+end)
+
+-- GUI Setup
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "KillAllGUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = playerGui
+
+local killButton = Instance.new("TextButton")
+killButton.Name = "KillAllButton"
+killButton.Size = UDim2.new(0, 250, 0, 50)
+killButton.Position = UDim2.new(0, 10, 0, 10) -- TOP-LEFT CORNER with margin
+killButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+killButton.BorderSizePixel = 0
+killButton.Font = Enum.Font.GothamBold
+killButton.TextScaled = true
+killButton.Text = "Kill All: ON (Must Equip Sword)"
+killButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+killButton.Parent = screenGui
+
+-- Toggle state
+local KillEnabled = true
+
+killButton.MouseButton1Click:Connect(function()
+	KillEnabled = not KillEnabled
+	if KillEnabled then
+		killButton.Text = "Kill All: ON (Must Equip Sword)"
+		killButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+	else
+		killButton.Text = "Kill All: OFF"
+		killButton.TextColor3 = Color3.fromRGB(150, 150, 150)
+	end
+end)
+
+-- Kill logic using sword touch method
+RunService.RenderStepped:Connect(function()
+	if KillEnabled then
+		local range = 10000000
+		local myChar = player.Character
+		local myHRP = myChar and myChar:FindFirstChild("HumanoidRootPart")
+
+		if not myHRP then return end
+
+		for _, target in pairs(Players:GetPlayers()) do
+			if target ~= player and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
+				local targetHRP = target.Character.HumanoidRootPart
+				local distance = (targetHRP.Position - myHRP.Position).Magnitude
+
+				if distance <= range then
+					for _, tool in ipairs(myChar:GetChildren()) do
+						if tool:IsA("Tool") and tool:FindFirstChild("Handle") then
+							firetouchinterest(tool.Handle, targetHRP, 0)
+							firetouchinterest(tool.Handle, targetHRP, 1)
+						end
+					end
+				end
+			end
+		end
+	end
+end)
