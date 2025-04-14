@@ -1,0 +1,77 @@
+-- You Tryna Steal This Script Or Just Looking What's Inside? --
+local lIIlIlIIllIllIlIIlIIlIIl = game:GetService("\83\116\97\114\116\101\114\71\117\105")
+local lIlIIlIIlIIIlIlIIIlIIlII = game:GetService("\80\108\97\121\101\114\115")
+local IIlIlIlIIlIIlIIlIIIlIlIl = game:GetService("\82\117\110\83\101\114\118\105\99\101")
+local lIIIIlIIlIllIlIlIIlIlIIl = lIlIIlIIlIIIlIlIIIlIIlII.LocalPlayer
+local IllIIlIIIlIlIlIIllIIIlIl = lIIIIlIIlIllIlIlIIlIlIIl:WaitForChild("\80\108\97\121\101\114\71\117\105")
+
+local IlIIIlIlIIlIIlIlIIlIllII = Instance.new("ScreenGui", IllIIlIIIlIlIlIIllIIIlIl)
+IlIIIlIlIIlIIlIlIIlIllII.Name = "\75\105\108\108\65\108\108\85\73"
+IlIIIlIlIIlIIlIlIIlIllII.ResetOnSpawn = false
+
+local IIlllIlIIIlIIlIIlIIlIllII = Instance.new("Frame", IlIIIlIlIIlIIlIlIIlIllII)
+IIlllIlIIIlIIlIIlIIlIllII.Size = UDim2.new(0, 250, 0, 90)
+IIlllIlIIIlIIlIIlIIlIllII.Position = UDim2.new(0.5, -125, 0.5, -45)
+IIlllIlIIIlIIlIIlIIlIllII.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+IIlllIlIIIlIIlIIlIIlIllII.Active = true
+IIlllIlIIIlIIlIIlIIlIllII.Draggable = true
+IIlllIlIIIlIIlIIlIIlIllII.BorderSizePixel = 0
+Instance.new("UICorner", IIlllIlIIIlIIlIIlIIlIllII).CornerRadius = UDim.new(0, 10)
+
+local lIllIlIlIIlIIlIIIlIlIIlII = Instance.new("TextButton", IIlllIlIIIlIIlIIlIIlIllII)
+lIllIlIlIIlIIlIIIlIlIIlII.Size = UDim2.new(1, -20, 0, 50)
+lIllIlIlIIlIIlIIIlIlIIlII.Position = UDim2.new(0, 10, 0, 10)
+lIllIlIlIIlIIlIIIlIlIIlII.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+lIllIlIlIIlIIlIIIlIlIIlII.TextColor3 = Color3.fromRGB(255, 0, 0)
+lIllIlIlIIlIIlIIIlIlIIlII.Font = Enum.Font.GothamBold
+lIllIlIlIIlIIlIIIlIlIIlII.TextScaled = true
+lIllIlIlIIlIIlIIIlIlIIlII.Text = "\75\105\108\108\32\65\108\108\58\32\79\70\70"
+Instance.new("UICorner", lIllIlIlIIlIIlIIIlIlIIlII).CornerRadius = UDim.new(0, 8)
+
+local _010101010101 = Instance.new(string.reverse("lebaLtxeT"), IIlllIlIIIlIIlIIlIIlIllII)
+_010101010101.Name = "lIlIlIlIlIl1010101"
+_010101010101.Size = UDim2.new(1, -20, 0, 20)
+_010101010101.Position = UDim2.new(0, 10, 0, 65)
+_010101010101.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+_010101010101.Text = string.char(77, 97, 100, 101, 32, 66, 121, 32, 64, 98, 111, 116, 114, 101, 97, 108, 49, 32, 111, 110, 32, 116, 105, 107, 116, 111, 107)
+_010101010101.TextColor3 = Color3.fromRGB(255, 255, 255)
+_010101010101.TextScaled = true
+_010101010101.Font = Enum.Font.Gotham
+_010101010101.BackgroundTransparency = 0
+Instance.new("UICorner", _010101010101).CornerRadius = UDim.new(0, 6)
+
+local lIlIIIllIIIIlIlIIIllIlIl = false
+
+lIllIlIlIIlIIlIIIlIlIIlII.MouseButton1Click:Connect(function()
+	lIlIIIllIIIIlIlIIIllIlIl = not lIlIIIllIIIIlIlIIIllIlIl
+	if lIlIIIllIIIIlIlIIIllIlIl then
+		lIllIlIlIIlIIlIIIlIlIIlII.Text = "\75\105\108\108\32\65\108\108\58\32\79\78\32\40\72\111\108\100\32\83\119\111\114\100\41"
+		lIllIlIlIIlIIlIIIlIlIIlII.TextColor3 = Color3.fromRGB(0, 255, 0)
+	else
+		lIllIlIlIIlIIlIIIlIlIIlII.Text = "\75\105\108\108\32\65\108\108\58\32\79\70\70"
+		lIllIlIlIIlIIlIIIlIlIIlII.TextColor3 = Color3.fromRGB(255, 0, 0)
+	end
+end)
+
+IIlIlIlIIlIIlIIlIIIlIlIl.RenderStepped:Connect(function()
+	if not lIlIIIllIIIIlIlIIIllIlIl then return end
+	for _, IIlIIlIIlIIlIlIIIIlIIIl in pairs(lIlIIlIIlIIIlIlIIIlIIlII:GetPlayers()) do
+		if IIlIIlIIlIIlIlIIIIlIIIl ~= lIIIIlIIlIllIlIlIIlIlIIl then
+			local IlIlIIIIIlIlIIlIlIIlIIlIl = IIlIIlIIlIIlIlIIIIlIIIl.Character
+			if IlIlIIIIIlIlIIlIlIIlIIlIl and IlIlIIIIIlIlIIlIlIIlIIlIl:FindFirstChild("Humanoid") and IlIlIIIIIlIlIIlIlIIlIIlIl.Humanoid.Health > 0 and IlIlIIIIIlIlIIlIlIIlIIlIl:FindFirstChild("HumanoidRootPart") then
+				if lIIIIlIIlIllIlIlIIlIlIIl:DistanceFromCharacter(IlIlIIIIIlIlIIlIlIIlIIlIl.HumanoidRootPart.Position) <= 1000000 then
+					local IlllIIlIIlIlIllIIlIlIIlll = lIIIIlIIlIllIlIlIIlIlIIl.Character and lIIIIlIIlIllIlIlIIlIlIIl.Character:FindFirstChildOfClass("Tool")
+					if IlllIIlIIlIlIllIIlIlIIlll and IlllIIlIIlIlIllIIlIlIIlll:FindFirstChild("Handle") then
+						IlllIIlIIlIlIllIIlIlIIlll:Activate()
+						for _, lIlIlIIIlIlIIlIIlIlIlIIl in pairs(IlIlIIIIIlIlIIlIlIIlIIlIl:GetChildren()) do
+							if lIlIlIIIlIlIIlIIlIlIlIIl:IsA("BasePart") then
+								firetouchinterest(IlllIIlIIlIlIllIIlIlIIlll.Handle, lIlIlIIIlIlIIlIIlIlIlIIl, 0)
+								firetouchinterest(IlllIIlIIlIlIllIIlIlIIlll.Handle, lIlIlIIIlIlIIlIIlIlIlIIl, 1)
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end)
