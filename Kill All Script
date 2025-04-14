@@ -1,0 +1,123 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local StarterGui = game:GetService("StarterGui")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+pcall(function()
+	StarterGui:SetCore("SendNotification", {
+		Title = "Made By Valerikbobby",
+		Text = "Join Our Discord Server https://discord.gg/d37YjMMwCq",
+		Duration = 10
+	})
+end)
+
+local screenGui = Instance.new("ScreenGui", playerGui)
+screenGui.Name = "KillAllUI"
+screenGui.ResetOnSpawn = false
+
+local container = Instance.new("Frame", screenGui)
+container.Size = UDim2.new(0, 250, 0, 90)
+container.Position = UDim2.new(0.5, -125, 0.5, -45)
+container.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+container.Active = true
+container.Draggable = true
+container.BorderSizePixel = 0
+Instance.new("UICorner", container).CornerRadius = UDim.new(0, 10)
+
+local killButton = Instance.new("TextButton", container)
+killButton.Size = UDim2.new(1, -20, 0, 50)
+killButton.Position = UDim2.new(0, 10, 0, 10)
+killButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+killButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+killButton.Font = Enum.Font.GothamBold
+killButton.TextScaled = true
+killButton.Text = "Kill All: OFF"
+Instance.new("UICorner", killButton).CornerRadius = UDim.new(0, 8)
+
+-- Hidden Credit Generator
+local function hiddenCredit()
+	local a = {77, 97, 100, 101}
+	local b = { "By", "@bo", "treal1"}
+	local c = " on tiktok"
+	return string.char(unpack(a)) .. table.concat(b) .. c
+end
+
+-- Credit Label
+local creditLabel = Instance.new("TextLabel", container)
+creditLabel.Size = UDim2.new(1, -20, 0, 20)
+creditLabel.Position = UDim2.new(0, 10, 0, 65)
+creditLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+creditLabel.Text = hiddenCredit()
+creditLabel.TextColor3 = Color3.new(1, 1, 1)
+creditLabel.TextScaled = true
+creditLabel.Font = Enum.Font.Gotham
+Instance.new("UICorner", creditLabel).CornerRadius = UDim.new(0, 6)
+
+local KillEnabled = false
+
+killButton.MouseButton1Click:Connect(function()
+	KillEnabled = not KillEnabled
+	if KillEnabled then
+		killButton.Text = "Kill All: ON (Hold Sword)"
+		killButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+	else
+		killButton.Text = "Kill All: OFF"
+		killButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+	end
+end)
+
+RunService.RenderStepped:Connect(function()
+	if not KillEnabled then return end
+
+	local players = Players:GetPlayers()
+	for i = 2, #players do
+		local target = players[i].Character
+		if target and target:FindFirstChild("Humanoid") and target.Humanoid.Health > 0 and target:FindFirstChild("HumanoidRootPart") then
+			if player:DistanceFromCharacter(target.HumanoidRootPart.Position) <= 1000000 then
+				local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+				if tool and tool:FindFirstChild("Handle") then
+					tool:Activate()
+					for _, part in pairs(target:GetChildren()) do
+						if part:IsA("BasePart") then
+							firetouchinterest(tool.Handle, part, 0)
+							firetouchinterest(tool.Handle, part, 1)
+						end
+					end
+				end
+			end
+		end
+	end
+end)
+
+-- Fake security tags (decoy)
+pcall(function()
+	local secureFolder = Instance.new("Folder")
+	secureFolder.Name = "DO_NOT_TOUCH"
+	secureFolder.Parent = script
+
+	local tag1 = Instance.new("StringValue")
+	tag1.Name = "LOCKED"
+	tag1.Value = tostring(math.random(100000, 999999))
+	tag1.Parent = secureFolder
+
+	local tag2 = Instance.new("NumberValue")
+	tag2.Name = "SessionID"
+	tag2.Value = tick()
+	tag2.Parent = secureFolder
+
+	local tag3 = Instance.new("BoolValue")
+	tag3.Name = "VerifiedRun"
+	tag3.Value = true
+	tag3.Parent = secureFolder
+end)
+
+-- Tamper detection
+task.defer(function()
+	task.wait(2)
+	local folder = script:FindFirstChild("DO_NOT_TOUCH")
+	if not folder or not folder:FindFirstChild("LOCKED") then
+		while true do end
+	end
+end)
