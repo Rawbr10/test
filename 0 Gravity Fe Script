@@ -1,0 +1,95 @@
+local player = game.Players.LocalPlayer
+local workspaceGravity = game.Workspace.Gravity
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ZeroGravityUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = game:GetService("CoreGui")
+
+local container = Instance.new("Frame")
+container.Size = UDim2.new(0, 300, 0, 90)
+container.Position = UDim2.new(0.5, -150, 0.5, -45)
+container.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+container.Active = true
+container.Draggable = true
+container.BorderSizePixel = 0
+Instance.new("UICorner", container).CornerRadius = UDim.new(0, 10)
+container.Parent = screenGui
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(1, -20, 0, 50)
+toggleButton.Position = UDim2.new(0, 10, 0, 10)
+toggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.Font = Enum.Font.GothamBold
+toggleButton.TextScaled = true
+toggleButton.Text = "Toggle: OFF"
+Instance.new("UICorner", toggleButton).CornerRadius = UDim.new(0, 8)
+toggleButton.Parent = container
+
+local creditLabel = Instance.new("TextLabel")
+creditLabel.Size = UDim2.new(1, -20, 0, 20)
+creditLabel.Position = UDim2.new(0, 10, 0, 65)
+creditLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+creditLabel.Text = "Made By @botreal1 on tiktok"
+creditLabel.TextColor3 = Color3.new(1, 1, 1)
+creditLabel.TextScaled = true
+creditLabel.Font = Enum.Font.Gotham
+Instance.new("UICorner", creditLabel).CornerRadius = UDim.new(0, 6)
+creditLabel.Parent = container
+
+local isTripping = false
+
+local function toggleTrip()
+	isTripping = not isTripping
+	local character = player.Character or player.CharacterAdded:Wait()
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+
+	if isTripping then
+		toggleButton.Text = "Toggle: ON"
+		game.Workspace.Gravity = 0
+		while isTripping and humanoid do
+			humanoid:ChangeState(Enum.HumanoidStateType.Ragdoll)
+			task.wait(0.1)
+		end
+	else
+		toggleButton.Text = "Toggle: OFF"
+		game.Workspace.Gravity = workspaceGravity
+	end
+end
+
+toggleButton.MouseButton1Click:Connect(toggleTrip)
+
+player.CharacterAdded:Connect(function()
+	isTripping = false
+	game.Workspace.Gravity = workspaceGravity
+end)
+
+pcall(function()
+	local secureFolder = Instance.new("Folder")
+	secureFolder.Name = "DO_NOT_TOUCH"
+	secureFolder.Parent = script
+
+	local tag1 = Instance.new("StringValue")
+	tag1.Name = "LOCKED"
+	tag1.Value = tostring(math.random(100000, 999999))
+	tag1.Parent = secureFolder
+
+	local tag2 = Instance.new("NumberValue")
+	tag2.Name = "SessionID"
+	tag2.Value = tick()
+	tag2.Parent = secureFolder
+
+	local tag3 = Instance.new("BoolValue")
+	tag3.Name = "VerifiedRun"
+	tag3.Value = true
+	tag3.Parent = secureFolder
+end)
+
+task.defer(function()
+	task.wait(2)
+	local folder = script:FindFirstChild("DO_NOT_TOUCH")
+	if not folder or not folder:FindFirstChild("LOCKED") then
+		while true do end -- freeze forever if tampered
+	end
+end)
