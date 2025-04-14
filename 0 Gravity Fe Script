@@ -1,95 +1,87 @@
-local player = game.Players.LocalPlayer
-local workspaceGravity = game.Workspace.Gravity
+local lIIlIlIIllIllIlIIlIIlIIl = game.Players.LocalPlayer
+local lIlllIlIlIlIIlIlIlIIIllI = game:GetService("CoreGui")
+local lIIIIlIIlIlIIIIIIIlIllIl = Instance.new("ScreenGui")
+lIIIIlIIlIlIIIIIIIlIllIl.Name = "lIIIlllIlIlIIlIlIIIlIIlIl"
+lIIIIlIIlIlIIIIIIIlIllIl.ResetOnSpawn = false
+lIIIIlIIlIlIIIIIIIlIllIl.Parent = lIlllIlIlIlIIlIlIlIIIllI
 
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "ZeroGravityUI"
-screenGui.ResetOnSpawn = false
-screenGui.Parent = game:GetService("CoreGui")
+local IlIlIIlIlIlIlIlIIlllIIIl = Instance.new("Frame")
+IlIlIIlIlIlIlIlIIlllIIIl.Size = UDim2.new(0, 300, 0, 90)
+IlIlIIlIlIlIlIlIIlllIIIl.Position = UDim2.new(0.5, -150, 0.5, -45)
+IlIlIIlIlIlIlIlIIlllIIIl.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+IlIlIIlIlIlIlIlIIlllIIIl.Active = true
+IlIlIIlIlIlIlIlIIlllIIIl.Draggable = true
+IlIlIIlIlIlIlIlIIlllIIIl.BorderSizePixel = 0
+Instance.new("UICorner", IlIlIIlIlIlIlIlIIlllIIIl).CornerRadius = UDim.new(0, 10)
+IlIlIIlIlIlIlIlIIlllIIIl.Parent = lIIIIlIIlIlIIIIIIIlIllIl
 
-local container = Instance.new("Frame")
-container.Size = UDim2.new(0, 300, 0, 90)
-container.Position = UDim2.new(0.5, -150, 0.5, -45)
-container.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-container.Active = true
-container.Draggable = true
-container.BorderSizePixel = 0
-Instance.new("UICorner", container).CornerRadius = UDim.new(0, 10)
-container.Parent = screenGui
+local IlIlIlIIIIIlIIlIIIlIIllI = Instance.new("TextButton")
+IlIlIlIIIIIlIIlIIIlIIllI.Size = UDim2.new(1, -20, 0, 50)
+IlIlIlIIIIIlIIlIIIlIIllI.Position = UDim2.new(0, 10, 0, 10)
+IlIlIlIIIIIlIIlIIIlIIllI.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+IlIlIlIIIIIlIIlIIIlIIllI.TextColor3 = Color3.fromRGB(255, 255, 255)
+IlIlIlIIIIIlIIlIIIlIIllI.Font = Enum.Font.GothamBold
+IlIlIlIIIIIlIIlIIIlIIllI.TextScaled = true
+IlIlIlIIIIIlIIlIIIlIIllI.Text = "Toggle: OFF"
+Instance.new("UICorner", IlIlIlIIIIIlIIlIIIlIIllI).CornerRadius = UDim.new(0, 8)
+IlIlIlIIIIIlIIlIIIlIIllI.Parent = IlIlIIlIlIlIlIlIIlllIIIl
 
-local toggleButton = Instance.new("TextButton")
-toggleButton.Size = UDim2.new(1, -20, 0, 50)
-toggleButton.Position = UDim2.new(0, 10, 0, 10)
-toggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-toggleButton.Font = Enum.Font.GothamBold
-toggleButton.TextScaled = true
-toggleButton.Text = "Toggle: OFF"
-Instance.new("UICorner", toggleButton).CornerRadius = UDim.new(0, 8)
-toggleButton.Parent = container
+local lIIIIllIllIIIIlIIlIlIlIl = Instance.new("TextLabel")
+lIIIIllIllIIIIlIIlIlIlIl.Size = UDim2.new(1, -20, 0, 20)
+lIIIIllIllIIIIlIIlIlIlIl.Position = UDim2.new(0, 10, 0, 65)
+lIIIIllIllIIIIlIIlIlIlIl.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+lIIIIllIllIIIIlIIlIlIlIl.Text = string.char(77,97,100,101,32,66,121,32,64,98,111,116,114,101,97,108,49,32,111,110,32,116,105,107,116,111,107)
+lIIIIllIllIIIIlIIlIlIlIl.TextColor3 = Color3.new(1, 1, 1)
+lIIIIllIllIIIIlIIlIlIlIl.TextScaled = true
+lIIIIllIllIIIIlIIlIlIlIl.Font = Enum.Font.Gotham
+Instance.new("UICorner", lIIIIllIllIIIIlIIlIlIlIl).CornerRadius = UDim.new(0, 6)
+lIIIIllIllIIIIlIIlIlIlIl.Parent = IlIlIIlIlIlIlIlIIlllIIIl
 
-local creditLabel = Instance.new("TextLabel")
-creditLabel.Size = UDim2.new(1, -20, 0, 20)
-creditLabel.Position = UDim2.new(0, 10, 0, 65)
-creditLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-creditLabel.Text = "Made By @botreal1 on tiktok"
-creditLabel.TextColor3 = Color3.new(1, 1, 1)
-creditLabel.TextScaled = true
-creditLabel.Font = Enum.Font.Gotham
-Instance.new("UICorner", creditLabel).CornerRadius = UDim.new(0, 6)
-creditLabel.Parent = container
+local lllIIlIllllIlIlIlIlIlIlI = false
+local lIIlIlIllIIlIlllIIIllIIl = workspace.Gravity
 
-local isTripping = false
-
-local function toggleTrip()
-	isTripping = not isTripping
-	local character = player.Character or player.CharacterAdded:Wait()
-	local humanoid = character:FindFirstChildOfClass("Humanoid")
-
-	if isTripping then
-		toggleButton.Text = "Toggle: ON"
-		game.Workspace.Gravity = 0
-		while isTripping and humanoid do
-			humanoid:ChangeState(Enum.HumanoidStateType.Ragdoll)
+local function lIIlIIIIlIlIlIlIIIlIIIlI()
+	lllIIlIllllIlIlIlIlIlIlI = not lllIIlIllllIlIlIlIlIlIlI
+	local lIlIllllIIlIIIIIIllIIlll = lIIlIlIIllIllIlIIlIIlIIl.Character or lIIlIlIIllIllIlIIlIIlIIl.CharacterAdded:Wait()
+	local lIIIIIIIIIlIllIIlIlIIlIl = lIlIllllIIlIIIIIIllIIlll:FindFirstChildOfClass("Humanoid")
+	
+	if lllIIlIllllIlIlIlIlIlIlI then
+		IlIlIlIIIIIlIIlIIIlIIllI.Text = "Toggle: ON"
+		workspace.Gravity = 0
+		while lllIIlIllllIlIlIlIlIlIlI and lIIIIIIIIIlIllIIlIlIIlIl do
+			lIIIIIIIIIlIllIIlIlIIlIl:ChangeState(Enum.HumanoidStateType.Ragdoll)
 			task.wait(0.1)
 		end
 	else
-		toggleButton.Text = "Toggle: OFF"
-		game.Workspace.Gravity = workspaceGravity
+		IlIlIlIIIIIlIIlIIIlIIllI.Text = "Toggle: OFF"
+		workspace.Gravity = lIIlIlIllIIlIlllIIIllIIl
 	end
 end
 
-toggleButton.MouseButton1Click:Connect(toggleTrip)
+IlIlIlIIIIIlIIlIIIlIIllI.MouseButton1Click:Connect(lIIlIIIIlIlIlIlIIIlIIIlI)
 
-player.CharacterAdded:Connect(function()
-	isTripping = false
-	game.Workspace.Gravity = workspaceGravity
+lIIlIlIIllIllIlIIlIIlIIl.CharacterAdded:Connect(function()
+	lllIIlIllllIlIlIlIlIlIlI = false
+	workspace.Gravity = lIIlIlIllIIlIlllIIIllIIl
 end)
 
 pcall(function()
-	local secureFolder = Instance.new("Folder")
-	secureFolder.Name = "DO_NOT_TOUCH"
-	secureFolder.Parent = script
+	local lIlIIIllIIllllIIlIlIIlII = Instance.new("Folder")
+	lIlIIIllIIllllIIlIlIIlII.Name = "DO_NOT_TOUCH"
+	lIlIIIllIIllllIIlIlIIlII.Parent = script
 
-	local tag1 = Instance.new("StringValue")
-	tag1.Name = "LOCKED"
-	tag1.Value = tostring(math.random(100000, 999999))
-	tag1.Parent = secureFolder
+	local lIlIIlIlIIIIIlIIlIlIlIl = Instance.new("StringValue")
+	lIlIIlIlIIIIIlIIlIlIlIl.Name = "LOCKED"
+	lIlIIlIlIIIIIlIIlIlIlIl.Value = tostring(math.random(100000, 999999))
+	lIlIIlIlIIIIIlIIlIlIlIl.Parent = lIlIIIllIIllllIIlIlIIlII
 
-	local tag2 = Instance.new("NumberValue")
-	tag2.Name = "SessionID"
-	tag2.Value = tick()
-	tag2.Parent = secureFolder
+	local IlllIIIlIIlIIIlIIlIIIlIl = Instance.new("NumberValue")
+	IlllIIIlIIlIIIlIIlIIIlIl.Name = "SessionID"
+	IlllIIIlIIlIIIlIIlIIIlIl.Value = tick()
+	IlllIIIlIIlIIIlIIlIIIlIl.Parent = lIlIIIllIIllllIIlIlIIlII
 
-	local tag3 = Instance.new("BoolValue")
-	tag3.Name = "VerifiedRun"
-	tag3.Value = true
-	tag3.Parent = secureFolder
-end)
-
-task.defer(function()
-	task.wait(2)
-	local folder = script:FindFirstChild("DO_NOT_TOUCH")
-	if not folder or not folder:FindFirstChild("LOCKED") then
-		while true do end -- freeze forever if tampered
-	end
+	local IIIlIIlIIlIllIIlIllIlIIl = Instance.new("BoolValue")
+	IIIlIIlIIlIllIIlIllIlIIl.Name = "VerifiedRun"
+	IIIlIIlIIlIllIIlIllIlIIl.Value = true
+	IIIlIIlIIlIllIIlIllIlIIl.Parent = lIlIIIllIIllllIIlIlIIlII
 end)
