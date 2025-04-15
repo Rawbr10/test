@@ -1,4 +1,3 @@
-//-- What are you doing here --\\
 local I1I1I1I1I1 = game:GetService("\83\116\97\114\116\101\114\71\117\105")
 local I1I1I1lIlI = game:GetService("\80\108\97\121\101\114\115")
 local l1Il1l1I1I = I1I1I1lIlI.LocalPlayer
