@@ -1,4 +1,5 @@
 -- Hello There --
+game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("Kill All Script Universal")
 local lIIlIlIIllIllIlIIlIIlIIl = game:GetService("\83\116\97\114\116\101\114\71\117\105")
 local lIlIIlIIlIIIlIlIIIlIIlII = game:GetService("\80\108\97\121\101\114\115")
 local IIlIlIlIIlIIlIIlIIIlIlIl = game:GetService("\82\117\110\83\101\114\118\105\99\101")
