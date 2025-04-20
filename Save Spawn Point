@@ -1,0 +1,84 @@
+local lIlIlIlIlIlIlIl = game.Players.LocalPlayer
+local IlIlIlIlIlIlIlI = lIlIlIlIlIlIlIl:GetMouse()
+
+local I1I1I1I1I1I1I1 = Instance.new("ScreenGui", lIlIlIlIlIlIlIl:WaitForChild("PlayerGui"))
+I1I1I1I1I1I1I1.Name = "1I1I1I1I1I"
+I1I1I1I1I1I1I1.ResetOnSpawn = false
+
+local l1l1l1l1l1l1l1 = Instance.new("Frame", I1I1I1I1I1I1I1)
+l1l1l1l1l1l1l1.Size = UDim2.new(0, 260, 0, 110)
+l1l1l1l1l1l1l1.Position = UDim2.new(0.5, -130, 0.5, -55)
+l1l1l1l1l1l1l1.BackgroundTransparency = 1
+l1l1l1l1l1l1l1.Active = true
+l1l1l1l1l1l1l1.Draggable = true
+
+local IIlIIlIIlIIlIIl = Instance.new("TextButton", l1l1l1l1l1l1l1)
+IIlIIlIIlIIlIIl.Size = UDim2.new(0, 240, 0, 60)
+IIlIIlIIlIIlIIl.Position = UDim2.new(0, 10, 0, 0)
+IIlIIlIIlIIlIIl.Text = "Save Spawn Point"
+IIlIIlIIlIIlIIl.TextScaled = true
+IIlIIlIIlIIlIIl.BackgroundColor3 = Color3.fromRGB(30,30,30)
+IIlIIlIIlIIlIIl.TextColor3 = Color3.new(1,1,1)
+IIlIIlIIlIIlIIl.BorderSizePixel = 0
+Instance.new("UICorner", IIlIIlIIlIIlIIl).CornerRadius = UDim.new(1,0)
+
+local lIIlIIlIIlIIlIl = Instance.new("Frame", l1l1l1l1l1l1l1)
+lIIlIIlIIlIIlIl.Size = UDim2.new(0, 240, 0, 30)
+lIIlIIlIIlIIlIl.Position = UDim2.new(0, 10, 0, 70)
+lIIlIIlIIlIIlIl.BackgroundColor3 = Color3.fromRGB(20,20,20)
+Instance.new("UICorner", lIIlIIlIIlIIlIl).CornerRadius = UDim.new(1, 0)
+
+local function l1lIl1l1Il1Il1(str)
+	local decoded = ""
+	for i = 1, #str, 3 do
+		local code = tonumber(str:sub(i, i+2))
+		if code then decoded = decoded .. string.char(code) end
+	end
+	return decoded
+end
+
+local I1l1I1l1I1l1I1 = Instance.new("TextLabel", lIIlIIlIIlIIlIl)
+I1l1I1l1I1l1I1.Size = UDim2.new(1, 0, 1, 0)
+I1l1I1l1I1l1I1.Text = l1lIl1l1Il1Il1("077097100101032066121032064098111116114101097108049032111110032116105107116111107")
+I1l1I1l1I1l1I1.TextScaled = true
+I1l1I1l1I1l1I1.BackgroundTransparency = 1
+I1l1I1l1I1l1I1.TextColor3 = Color3.new(1, 1, 1)
+I1l1I1l1I1l1I1.Font = Enum.Font.SourceSansBold
+
+local function lIlIlIlIlIlIlIlIl(message)
+	pcall(function()
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Notification",
+			Text = message,
+			Duration = 2
+		})
+	end)
+end
+
+-- Only ONE spawn point stored
+local l1I1l1I1l1I1l1 = Instance.new("Vector3Value")
+l1I1l1I1l1I1l1.Name = "1I1I1I1I1I"
+l1I1l1I1l1I1l1.Parent = I1I1I1I1I1I1I1 -- parent it in GUI so it doesn’t get wiped
+
+IIlIIlIIlIIlIIl.MouseButton1Click:Connect(function()
+	if lIlIlIlIlIlIlIl.Character and lIlIlIlIlIlIlIl.Character:FindFirstChild("HumanoidRootPart") then
+		l1I1l1I1l1I1l1.Value = lIlIlIlIlIlIlIl.Character.HumanoidRootPart.Position
+		lIlIlIlIlIlIlIlIl("Successfully Saved Spawn Point")
+	end
+end)
+
+lIlIlIlIlIlIlIl.CharacterAdded:Connect(function(IlIlIlIlIlIlIlIl)
+	IlIlIlIlIlIlIlIl:WaitForChild("HumanoidRootPart")
+	task.wait()
+	if l1I1l1I1l1I1l1.Value ~= Vector3.zero then
+		IlIlIlIlIlIlIlIl:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(l1I1l1I1l1I1l1.Value)
+	end
+end)
+
+IlIlIlIlIlIlIlI.KeyDown:Connect(function(l1l1I1l1I1l1l1)
+	if l1l1I1l1I1l1l1:lower() == "e" and lIlIlIlIlIlIlIl.Character and lIlIlIlIlIlIlIl.Character:FindFirstChild("HumanoidRootPart") then
+		if l1I1l1I1l1I1l1.Value ~= Vector3.zero then
+			lIlIlIlIlIlIlIl.Character.HumanoidRootPart.CFrame = CFrame.new(l1I1l1I1l1I1l1.Value)
+		end
+	end
+end)
