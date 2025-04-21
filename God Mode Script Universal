@@ -1,9 +1,9 @@
-
 local I1I1I1I1 = Instance.new("ScreenGui")
 local I1I1I1I2 = Instance.new("Frame")
 local I1I1I1I3 = Instance.new("TextLabel")
 local I1I1I1I4 = Instance.new("TextButton")
 local I1I1I1I5 = Instance.new("TextLabel")
+local sound = Instance.new("Sound")
 
 I1I1I1I1.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 I1I1I1I1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -48,6 +48,10 @@ I1I1I1I5.Text = string.char(77, 97, 100, 101, 32, 98, 121, 32, 64, 98, 111, 116,
 I1I1I1I5.TextColor3 = Color3.fromRGB(255, 255, 255)
 I1I1I1I5.TextSize = 18.000
 
+sound.Parent = I1I1I1I4
+sound.SoundId = "rbxassetid://12221967"
+sound.Volume = 1.1
+
 local function I1I1I1I_script()
 	local I1script = Instance.new("LocalScript", I1I1I1I4)
 
@@ -59,6 +63,10 @@ local function I1I1I1I_script()
 	local function I1updateText()
 		I1button.Text = I1enabled and "God Mode: OFF" or "God Mode: ON"
 	end
+  I1button.MouseButton1Click:Connect(function()
+        sound:Play()
+        I1toggle()
+    end)
 
 	local function I1toggle()
 		I1enabled = not I1enabled
