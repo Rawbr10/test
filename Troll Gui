@@ -112,14 +112,14 @@ SpamButton.MouseButton1Click:Connect(function()
                 local chr = getchr()
                 local hrp = chr and chr:FindFirstChild("HumanoidRootPart")
                 if not hrp then break end
-                -- Fading blocks
+                
                 for _, part in pairs(workspace:GetDescendants()) do
                     if part:IsA("BasePart") and part.Name == "ì‚¬ë¼ì§€ëŠ” íŒŒíŠ¸" then
                         firetouchinterest(hrp, part, 0)
                         firetouchinterest(hrp, part, 1)
                     end
                 end
-                -- Main button
+                
                 if buttonPart and buttonPart:IsA("BasePart") then
                     firetouchinterest(hrp, buttonPart, 0)
                     firetouchinterest(hrp, buttonPart, 1)
