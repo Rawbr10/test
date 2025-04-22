@@ -1,4 +1,4 @@
--- What are you doing here bud
+-- What are you doing here??
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -90,7 +90,8 @@ TrollPadsSpamButton.MouseButton1Click:Connect(function()
                 local hrp = chr and chr:FindFirstChild("HumanoidRootPart")
                 if not hrp then break end
                 for _, part in pairs(workspace:GetDescendants()) do
-                    if part:IsA("BasePart") and part.Name == "ì‚¬ë¼ì§€ëŠ” íŒŒíŠ¸" then
+                    if part:IsA("BasePart") and part.Name == "사라지는 파트"
+                      then
                         firetouchinterest(hrp, part, 0)
                         firetouchinterest(hrp, part, 1)
                     end
@@ -112,14 +113,15 @@ SpamButton.MouseButton1Click:Connect(function()
                 local chr = getchr()
                 local hrp = chr and chr:FindFirstChild("HumanoidRootPart")
                 if not hrp then break end
-                
+               
                 for _, part in pairs(workspace:GetDescendants()) do
-                    if part:IsA("BasePart") and part.Name == "ì‚¬ë¼ì§€ëŠ” íŒŒíŠ¸" then
+                    if part:IsA("BasePart") and part.Name == "사라지는 파트"
+                then
                         firetouchinterest(hrp, part, 0)
                         firetouchinterest(hrp, part, 1)
                     end
                 end
-                
+               
                 if buttonPart and buttonPart:IsA("BasePart") then
                     firetouchinterest(hrp, buttonPart, 0)
                     firetouchinterest(hrp, buttonPart, 1)
