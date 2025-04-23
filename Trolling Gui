@@ -1,10 +1,10 @@
--- What are you doing here??
+-- Hi
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local CoreGui = game.CoreGui
 
-local guiName = "kiwiGui"
+local guiName = "trollingGui"
 local existing = CoreGui:FindFirstChild(guiName)
 if existing then
     existing:Destroy()
@@ -25,7 +25,7 @@ UICorner.CornerRadius = UDim.new(0, 10)
 local Title = Instance.new("TextLabel", Frame)
 Title.Size = UDim2.new(1, 0, 0, 25)
 Title.Position = UDim2.new(0, 0, 0, 0)
-Title.Text = "Troll GUI"
+Title.Text = "Trolling GUI"
 Title.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 Title.TextColor3 = Color3.new(1, 1, 1)
 Title.Font = Enum.Font.SourceSansBold
@@ -51,7 +51,7 @@ TrollPadsSpamButton.TextScaled = true
 local SpamButton = Instance.new("TextButton", Frame)
 SpamButton.Size = UDim2.new(0, 200, 0, 50)
 SpamButton.Position = UDim2.new(0, 10, 0, 95)
-SpamButton.Text = "Spam: OFF"
+SpamButton.Text = "Spam All: OFF"
 SpamButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 SpamButton.TextColor3 = Color3.fromRGB(240, 240, 240)
 SpamButton.TextScaled = true
