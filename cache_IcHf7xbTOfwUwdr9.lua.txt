@@ -1,7 +1,3 @@
--- This file was generated with UnveilR 2.1.0 at discord.gg/threaded or discord.gg/aqfudJEEeE.
-
-local fenv = getfenv()
-
 local arg1_3, arg2_3, arg3_3, arg4_3, arg5_3, arg6_3, arg7_3, arg8_3, arg9_3, arg10_3 = ...
 local var1 = (getfenv and getfenv())
 local var14 = {
