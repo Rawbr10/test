@@ -97,7 +97,6 @@ local function teleportAndAttack(part, head)
     return true
 end
 
--- Background equip lock loop (uses _G vars)
 task.spawn(function()
     while true do
         task.wait(0.015)
@@ -110,7 +109,6 @@ task.spawn(function()
     end
 end)
 
--- GLOBAL FUNCTIONS via _G
 _G.startDestroy = function()
     if _G.destroyRunning then return end
     _G.destroyRunning = true
@@ -166,9 +164,6 @@ _G.stopDestroy = function()
     _G.lockEquip = false
     unequipAllTools()
 end
-
--- Optional: print ready message
-print("Sentry destroyer loaded! Use startDestroy() and stopDestroy() in console.")end
 
 local function equipBat()
     local bat = getBat()
@@ -298,3 +293,6 @@ local function stopDestroy()
     lockEquip = false
     unequipAllTools()
 end
+
+_G.startDestroy = startDestroy
+_G.stopDestroy = stopDestroy
