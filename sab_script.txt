@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://cdn.discordapp.com/attachments/1430779176385777787/1452495760368074895/Hnzkkhh.txt?ex=694a0597&is=6948b417&hm=2707438a2deed7a971586fb02872a84bdfa4436ee6a5aaa7323063ebbb287bff&"))()
+local Library = loadstring(game:HttpGet("https://github.com/Rawbr10/test/raw/refs/heads/main/crusty_library22.lua.txt"))()
 
 local Window = Library:CreateWindow({
     Name = "Crusty Hub",
@@ -3107,4 +3107,5 @@ Window:Notify({
     Content = "Loaded successfully!",
     Duration = 3,
     Type = "Success"
+
 })
