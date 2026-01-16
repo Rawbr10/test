@@ -1,5 +1,3 @@
--- platin
-
 local CrustyHub = {}
 local UserInputService = game:GetService("UserInputService")
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
@@ -14,6 +12,7 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
         end)
     end
 end)
+
 UserInputService.InputEnded:Connect(function(input, gameProcessed)
     if input.KeyCode == Enum.KeyCode.LeftShift then
         task.spawn(function()
@@ -25,6 +24,7 @@ UserInputService.InputEnded:Connect(function(input, gameProcessed)
         end)
     end
 end)
+
 local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 local function PreventMultipleGUI()
     if PlayerGui:FindFirstChild("CrustyHub") then
@@ -32,6 +32,7 @@ local function PreventMultipleGUI()
         task.wait(0.1)
     end
 end
+
 CrustyHub.ConfigSystem = {}
 CrustyHub.ConfigSystem.FolderName = nil
 CrustyHub.ConfigSystem.ConfigFileName = "config.json"
@@ -46,6 +47,7 @@ function CrustyHub.ConfigSystem:SetFolder(folderName)
         end
     end
 end
+
 function CrustyHub.ConfigSystem:SaveConfig(data)
     if not self.AutoSave then return false end
     local success = pcall(function()
@@ -54,6 +56,7 @@ function CrustyHub.ConfigSystem:SaveConfig(data)
     end)
     return success
 end
+
 function CrustyHub.ConfigSystem:LoadConfig()
     local success, content = pcall(function()
         return readfile(self.ConfigFileName)
@@ -69,6 +72,7 @@ function CrustyHub.ConfigSystem:LoadConfig()
     end
     return {}
 end
+
 function CrustyHub.ConfigSystem:RegisterCallback(key, callback)
     self.ElementCallbacks[key] = callback
 end
@@ -81,6 +85,7 @@ function CrustyHub.ConfigSystem:ApplyCallbacks(configData)
         end
     end
 end
+
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
@@ -111,6 +116,7 @@ local THEME = {
     InputBg = Color3.fromRGB(28, 28, 34),
     InputStroke = Color3.fromRGB(45, 45, 55),
 }
+
 local ANIMATIONS = {
     Fast = TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
     Normal = TweenInfo.new(0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
@@ -129,12 +135,14 @@ local function CreateInstance(className, properties)
     end
     return instance
 end
+
 local function CreateRoundedRect(parent, radius)
     return CreateInstance("UICorner", {
         Parent = parent,
         CornerRadius = UDim.new(0, radius or 8)
     })
 end
+
 local function AnimateHover(object, hoverColor, normalColor)
     object.MouseEnter:Connect(function()
         TweenService:Create(object, ANIMATIONS.Fast, {
@@ -147,9 +155,10 @@ local function AnimateHover(object, hoverColor, normalColor)
         }):Play()
     end)
 end
+
 function CrustyHub:CreateWindow(options)
     options = options or {}
-    local windowName = options.Name or "Crusty Hub"
+    local windowName = options.Name or "ProjectX Hub"
     local windowSize = options.Size or UDim2.new(0, 380, 0, 320)
     local toggleKeybind = options.ToggleKeybind or Enum.KeyCode.RightShift
     if options.AutoSave ~= nil then
@@ -158,6 +167,7 @@ function CrustyHub:CreateWindow(options)
     if options.FolderName then
         self.ConfigSystem:SetFolder(options.FolderName)
     end
+
     PreventMultipleGUI()
     local Window = {}
     Window.Tabs = {}
@@ -171,6 +181,7 @@ function CrustyHub:CreateWindow(options)
         end
         return false
     end
+
     function Window:SaveConfigData()
         return CrustyHub.ConfigSystem:SaveConfig(self.ConfigData)
     end
@@ -186,13 +197,25 @@ function CrustyHub:CreateWindow(options)
         task.wait(0.3)
         CrustyHub.ConfigSystem:ApplyCallbacks(Window.ConfigData)
     end)
+
+local function getGuiParent()
+    if typeof(gethui) == "function" then
+        return gethui()
+    elseif game:GetService("CoreGui") then
+        return game:GetService("CoreGui")
+    else
+        return LocalPlayer:WaitForChild("PlayerGui")
+    end
+end
+
     local screenGui = CreateInstance("ScreenGui", {
-        Name = "CrustyHub",
-        Parent = PlayerGui,
+        Name = "ProjectXHub",
+        Parent = getGuiParent(),
         ResetOnSpawn = false,
         ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
         IgnoreGuiInset = true,
     })
+
     local toggleButton = CreateInstance("TextButton", {
         Parent = screenGui,
         AnchorPoint = Vector2.new(0.5, 0),
@@ -201,19 +224,21 @@ function CrustyHub:CreateWindow(options)
         BackgroundColor3 = THEME.Background,
         BackgroundTransparency = 0.15,
         BorderSizePixel = 0,
-        Text = "Show Crusty Hub",
+        Text = "Show ProjectX Hub",
         Font = Enum.Font.GothamMedium,
         TextSize = 13,
         TextColor3 = THEME.Text,
         AutoButtonColor = false,
     })
+
     CreateRoundedRect(toggleButton, 10)
     CreateInstance("UIStroke", {
         Parent = toggleButton,
         Thickness = 1,
-        Transparency = 0.85,
+        Transparency = 0.65,
         Color = THEME.Line
     })
+
     CreateInstance("ImageLabel", {
         Parent = toggleButton,
         Name = "Shadow",
@@ -237,6 +262,7 @@ function CrustyHub:CreateWindow(options)
         ClipsDescendants = true,
         Visible = false,
     })
+
     CreateRoundedRect(mainFrame, 12)
     CreateInstance("UIStroke", {
         Parent = mainFrame,
@@ -244,6 +270,7 @@ function CrustyHub:CreateWindow(options)
         Transparency = 0.7,
         Color = THEME.Line
     })
+
     CreateInstance("ImageLabel", {
         Parent = mainFrame,
         Name = "Shadow",
@@ -257,11 +284,13 @@ function CrustyHub:CreateWindow(options)
         BackgroundTransparency = 1,
         ZIndex = -1
     })
+
     local topBar = CreateInstance("Frame", {
         Parent = mainFrame,
         Size = UDim2.new(1, 0, 0, 36),
         BackgroundTransparency = 1
     })
+
     local title = CreateInstance("TextLabel", {
         Parent = topBar,
         Position = UDim2.new(0, 14, 0, 0),
@@ -273,6 +302,7 @@ function CrustyHub:CreateWindow(options)
         TextColor3 = THEME.Text,
         TextXAlignment = Enum.TextXAlignment.Left,
     })
+
     local closeButton = CreateInstance("TextButton", {
         Parent = topBar,
         AnchorPoint = Vector2.new(1, 0.5),
@@ -281,12 +311,13 @@ function CrustyHub:CreateWindow(options)
         BackgroundColor3 = THEME.Content,
         BackgroundTransparency = 0.5,
         BorderSizePixel = 0,
-        Text = "×",
+        Text = "X",
         Font = Enum.Font.GothamBold,
         TextSize = 20,
         TextColor3 = THEME.Muted,
         AutoButtonColor = false,
     })
+
     CreateRoundedRect(closeButton, 8)
     AnimateHover(closeButton, THEME.Danger, THEME.Content)
     local tabBarContainer = CreateInstance("Frame", {
@@ -296,12 +327,14 @@ function CrustyHub:CreateWindow(options)
         BackgroundColor3 = THEME.TabBg,
         BackgroundTransparency = 0.3,
     })
+
     CreateRoundedRect(tabBarContainer, 8)
     local tabBar = CreateInstance("Frame", {
         Parent = tabBarContainer,
         Size = UDim2.new(1, 0, 1, 0),
         BackgroundTransparency = 1,
     })
+
     CreateInstance("UIListLayout", {
         Parent = tabBar,
         FillDirection = Enum.FillDirection.Horizontal,
@@ -309,6 +342,7 @@ function CrustyHub:CreateWindow(options)
         HorizontalAlignment = Enum.HorizontalAlignment.Center,
         VerticalAlignment = Enum.VerticalAlignment.Center
     })
+
     CreateInstance("UIPadding", {
         Parent = tabBar,
         PaddingLeft = UDim.new(0, 5),
@@ -316,6 +350,7 @@ function CrustyHub:CreateWindow(options)
         PaddingTop = UDim.new(0, 3),
         PaddingBottom = UDim.new(0, 3)
     })
+
     local contentContainer = CreateInstance("Frame", {
         Parent = mainFrame,
         Position = UDim2.new(0, 10, 0, 72),
@@ -323,6 +358,7 @@ function CrustyHub:CreateWindow(options)
         BackgroundTransparency = 1,
         ClipsDescendants = true,
     })
+
     local isOpen = false
     local function ToggleWindow()
         isOpen = not isOpen
@@ -741,4 +777,5 @@ function CrustyHub:CreateWindow(options)
     end
     return Window
 end
+
 return CrustyHub
